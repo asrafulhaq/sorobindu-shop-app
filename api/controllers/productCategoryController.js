@@ -1,20 +1,21 @@
 import Category from "../models/Category.js";
+import { createError } from "../utils/createError.js";
 
 // get all product category
-export const getAllProductCategory = async (req, res) => {
+export const getAllProductCategory = async (req, res, next) => {
   try {
-    const data = await Category.find();
+    const data = await Category.finds();
     res.status(200).json({
       categories: data,
       message: "get all data success",
     });
   } catch (error) {
-    console.log(`${error.message}`.bgRed.black);
+    next(error);
   }
 };
 
 // get all product category
-export const createProductCategory = async (req, res) => {
+export const createProductCategory = async (req, res, next) => {
   try {
     const { name, slug } = req.body;
     const data = await Category.create({
@@ -27,12 +28,12 @@ export const createProductCategory = async (req, res) => {
       message: "Category added successful",
     });
   } catch (error) {
-    console.log(`${error.message}`.bgRed.black);
+    next(error);
   }
 };
 
 // get all product category
-export const getSingleProductCategory = async (req, res) => {
+export const getSingleProductCategory = async (req, res, next) => {
   try {
     const { slug } = req.params;
     const data = await Category.findOne({ slug });
@@ -41,12 +42,12 @@ export const getSingleProductCategory = async (req, res) => {
       message: "Single Category Success",
     });
   } catch (error) {
-    console.log(`${error.message}`.bgRed.black);
+    next(createError("Category not found", 404));
   }
 };
 
 // get all product category
-export const deleteProductCategory = async (req, res) => {
+export const deleteProductCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = await Category.findByIdAndDelete(id);
@@ -54,12 +55,12 @@ export const deleteProductCategory = async (req, res) => {
       message: "Category Delete Success",
     });
   } catch (error) {
-    console.log(`${error.message}`.bgRed.black);
+    next(error);
   }
 };
 
 // get all product category
-export const updateProductCategory = async (req, res) => {
+export const updateProductCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, slug } = req.body;
@@ -73,6 +74,6 @@ export const updateProductCategory = async (req, res) => {
       message: "Category updated Success",
     });
   } catch (error) {
-    console.log(`${error.message}`.bgRed.black);
+    next(error);
   }
 };
