@@ -47,14 +47,17 @@ const productSchema = mongoose.Schema(
     categories: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Category",
+      default: [],
     },
     tags: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Tag",
+      default: [],
     },
     brands: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Brand",
+      default: null,
     },
     status: {
       type: Boolean,
