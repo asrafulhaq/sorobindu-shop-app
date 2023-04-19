@@ -6,13 +6,14 @@
   "type": "module",
   "scripts": {
     "server": "nodemon api/server.js",
-    "client": "npm start --prefix client",
+    "client": "npm run dev --prefix client",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",

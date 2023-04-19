@@ -2,10 +2,8 @@ import express from "express";
 import colors from "colors";
 import dotenv from "dotenv";
 import cors from "cors";
-import productCategoryRoute from "./routes/productCategory.js";
-import productBrandRoute from "./routes/productBrand.js";
-import productTagRoute from "./routes/productTagRoute.js";
-import productRoute from "./routes/productRoute.js";
+import userRoute from "./routes/user.js";
+
 import mongoDBConnect from "./config/db.js";
 import { errorHandle } from "./middlewares/errorHandler.js";
 
@@ -22,10 +20,8 @@ app.use(cors());
 app.use(express.static("api/public"));
 
 // routes
-app.use("/api/v1/product", productRoute);
-app.use("/api/v1/product", productCategoryRoute);
-app.use("/api/v1/product", productBrandRoute);
-app.use("/api/v1/product", productTagRoute);
+app.use("/api/v1/", userRoute);
+
 // envronment variable
 const PORT = process.env.PORT || 9090;
 
